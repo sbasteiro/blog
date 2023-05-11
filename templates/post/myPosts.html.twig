@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{parent()}} - My Posts
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                {% for post in posts %}
+                    <div class="bg-white rounded p-3 my-3" onclick="window.location.href='{{ path('view_post',{id:post.id}) }}'" style="cursor: pointer">
+                        <h3>{{ post.title }}</h3>
+                        <div class="my-3 bg-yellow"> <i class="fa fa-user"></i><strong> Created by {{post.user.name}}</strong></div>
+                        <div class=" bg-green"><i class="far fa-clock"></i> <strong>Publication Date: {{ post.publicationdate | date }}</strong></div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{% endblock %}
